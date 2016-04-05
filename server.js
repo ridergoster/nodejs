@@ -27,6 +27,19 @@ server.on('request', function(req, res){
 
     return;
   }
+  // [DELETE] /todos/name
+  // delete all occurences of todos that have the same name
+  if (method === 'DELETE' && /\/todos/.test(url)){
+    var name = url.split('/')[2];
+    var newTodos = [];
+    todos.forEach(function(todo){
+      if (todo == name)
+        return;
+      newTodos.push(todo);
+    });
+    todos = newTodos;
+    res.end(todos.toString());
+  }
   // [GET] /todos
   // Return/respond the content of todos array.
   if (method === 'GET' && url === '/todos')
