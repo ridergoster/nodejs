@@ -6,8 +6,13 @@ module.exports = function(server){
   .post('/',
   bodyparser.json(), 
   server.actions.jobs.create)
+
   .get('/', server.actions.jobs.list)
-  .put('/', server.actions.jobs.update)
+
+  .put('/',
+  bodyparser.json(),
+  server.actions.jobs.update)
+
   .delete('/', server.actions.jobs.remove)
 
   return router;
