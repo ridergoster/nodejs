@@ -13,7 +13,7 @@ module.exports = function(server){
   bodyparser.json(),
   server.actions.jobs.update)
 
-  .delete('/:name', server.actions.jobs.remove)
+  .delete('/:name', server.actions.jobs.remove);
 
   return router;
-}
+};

@@ -11,5 +11,5 @@ module.exports = function(server){
 
     server.models.JOBS = jobs;
     res.send(server.models.JOBS);
-  }
-}
+  };
+};

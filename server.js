@@ -5,5 +5,5 @@ require('./models')(server);
 require('./actions')(server);
 require('./routes')(server);
 
-console.log('Server listening on port 3000');
-server.listen(3000);
+console.log('Server listening on port 8080');
+server.listen(8080);

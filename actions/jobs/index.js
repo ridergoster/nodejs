@@ -4,5 +4,5 @@ module.exports = function(server){
     update: require('./update')(server),
     remove: require('./remove')(server),
     list: require('./list')(server)
-  }
-}
+  };
+};

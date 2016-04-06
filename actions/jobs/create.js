@@ -8,5 +8,5 @@ module.exports = function(server){
         return res.status(500).send(err);
       res.send(instance);
     });
-  }
-}
+  };
+};
