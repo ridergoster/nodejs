@@ -1,4 +1,5 @@
 module.exports = function(server){
+  var Schema = server.models.mongoose.Schema;
   var JobSchema = server.models.mongoose.Schema({
     title: {
       type: String,
@@ -11,6 +12,11 @@ module.exports = function(server){
     },
     startDate: {
       type: String,
+      required: true
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true
     }
   });

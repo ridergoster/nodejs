@@ -1,11 +1,19 @@
 module.exports = function(server){
   return function(req, res, next){
-    var Job = server.models.Job;
-    var job = new Job(req.body);
-
-    job.save(function(err, instance){
-      if (err) return res.status(500).send(err);
-      res.send(instance);
+    var User = server.models.User;
+    var userId = req.body.owner;
+    User.findById(userId, function(err,user) {
+      if(err) return res.status(500).send(err);
+      var Job = server.models.Job;
+      var job = new Job(req.body);
+      job.save(function(err, job){
+        if (err) return res.status(500).send(err);
+        user.offers.push(job._id);
+        user.save(function(err, instance) {
+          if(err) return res.status(500).send(err);
+          res.send(job);
+        });
+      });
     });
   };
 };

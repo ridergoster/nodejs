@@ -1,4 +1,5 @@
 module.exports = function(server){
+  var Schema = server.models.mongoose.Schema;
   var UserSchema = server.models.mongoose.Schema({
     email: {
       type: String,
@@ -17,7 +18,11 @@ module.exports = function(server){
     lastName: {
       type: String,
       default: 'bar'
-    }
+    },
+    offers: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Job'
+    }]
   });
 
   return server.models.mongoose.model('User', UserSchema);
