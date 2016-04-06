@@ -7,7 +7,7 @@ module.exports = function(server){
     },
     createdAt: {
       type: Date,
-      expires: 3600
+      expires: 360000
     }
   });
 

@@ -3,6 +3,7 @@ module.exports = function(server){
   router
   .post('/',
   server.middlewares.bodyparser,
+  server.middlewares.ensureAuthenticated,
   server.actions.jobs.create)
 
   .get('/:id', server.actions.jobs.show)
