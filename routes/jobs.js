@@ -1,18 +1,22 @@
 var router = require('express').Router();
-var bodyparser = require('body-parser');
-
 module.exports = function(server){
-  router.post('/',
-  bodyparser.json(),
-  server.actions.jobs.create);
-  router.get('/:id', server.actions.jobs.show);
-  router.get('/', server.actions.jobs.list);
+  router
+  .post('/',
+  server.middlewares.bodyparser,
+  server.actions.jobs.create)
 
-  router.put('/:id',
-  bodyparser.json(),
-  server.actions.jobs.update);
+  .get('/:id', server.actions.jobs.show)
+  .get('/', server.actions.jobs.list)
 
-  router.delete('/:id', server.actions.jobs.remove);
+  .put('/',
+  server.middlewares.bodyparser,
+  server.middlewares.ensureFields('_id'),
+  server.actions.jobs.update)
+
+  .delete('/',
+  server.middlewares.bodyparser,
+  server.middlewares.ensureFields('_id'),
+  server.actions.jobs.remove);
 
   return router;
 };

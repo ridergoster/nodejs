@@ -1,6 +1,7 @@
 var express = require('express');
 var server = express();
 
+require('./middlewares')(server);
 require('./models')(server);
 require('./actions')(server);
 require('./routes')(server);
