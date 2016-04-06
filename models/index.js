@@ -5,4 +5,6 @@ module.exports = function(server){
   server.models.mongoose = mongoose.connect('mongodb://localhost:27017/jobs-db');
   server.models.Job = require('./Job')(server);
   server.models.User = require('./User')(server);
+  server.models.AuthToken = require('./AuthToken')(server);
+
 };
