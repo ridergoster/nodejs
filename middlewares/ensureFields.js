@@ -1,7 +1,9 @@
 module.exports = function(fields){
+
   return function(req, res, next){
     var requiredFields = (fields instanceof Array)? fields : [fields];
     var bodyFields = Object.keys(req.body);
+
     var missingFields = [];
 
     requiredFields.forEach(function(field){

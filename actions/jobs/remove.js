@@ -1,11 +1,11 @@
 module.exports = function(server){
   return function(req, res, next){
     var Job = server.models.Job;
-    var jobToDelete = req.body._id;
+    var jobToDelete = req.params.id;
 
-    Job.remove({'_id': jobToDelete },function(err, instance) {
+    Job.findByIdAndRemove(jobToDelete, function(err, oldInstance) {
       if (err) return res.send(err);
-      res.send(instance);
+      res.send(oldInstance);
     });
   };
 };
