@@ -1,7 +1,9 @@
 var jwt = require('jsonwebtoken');
-var JWT_SECRET = "jwtSecret";
 
 module.exports = function(server) {
+
+  var JWT_SECRET = server.settings.JWT_SECRET;
+
   return function(req, res, next) {
     var User = server.models.User;
     var AuthToken = server.models.AuthToken;

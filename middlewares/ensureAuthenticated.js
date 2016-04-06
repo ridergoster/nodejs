@@ -2,7 +2,7 @@
 module.exports = function(server) {
 
   var jwt = require('jsonwebtoken');
-  var JWT_SECRET = "JWT_SECRET";
+  var JWT_SECRET = server.settings.JWT_SECRET;
   var User = server.models.User;
   var AuthToken = server.models.AuthToken;
 
@@ -12,7 +12,7 @@ module.exports = function(server) {
     if(!signed) return res.status(401).send('unauthorized');
 
     jwt.verify(signed, JWT_SECRET, function(err, decoded) {
-      if(!signed) return res.status(400).send('BAD REQUEST');
+      if(!decoded) return res.status(400).send('BAD REQUEST');
       var tokenId = decoded.auth;
 
       AuthToken.findById(tokenId, function(err, token) {
