@@ -1,9 +1,11 @@
 module.exports = function(server){
   return function(req, res, next){
     var Job = server.models.Job;
-    Job.find(function(err, jobs) {
+    console.log(req.params.id);
+
+    Job.find({'_id': req.params.id },function(err, instance) {
       if (err) return res.send(err);
-      res.send(jobs);
+      res.json(instance);
     });
   };
 };

@@ -4,8 +4,7 @@ module.exports = function(server){
     var job = new Job(req.body);
 
     job.save(function(err, instance){
-      if (err)
-        return res.status(500).send(err);
+      if (err) return res.status(500).send(err);
       res.send(instance);
     });
   };

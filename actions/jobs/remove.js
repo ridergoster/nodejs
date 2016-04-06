@@ -1,15 +1,11 @@
 module.exports = function(server){
   return function(req, res, next){
-    var jobToDelete = req.params.name;
+    var Job = server.models.Job;
+    var jobToDelete = req.params.id;
 
-    var jobs = [];
-    server.models.JOBS.forEach(function(job){
-      if (job == jobToDelete)
-        return;
-        jobs.push(job);
+    Job.remove({'_id': req.params.id },function(err, instance) {
+      if (err) return res.send(err);
+      res.send(instance);
     });
-
-    server.models.JOBS = jobs;
-    res.send(server.models.JOBS);
   };
 };

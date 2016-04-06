@@ -1,15 +1,11 @@
 module.exports = function(server){
+
   return function(req, res, next){
-    var oldJob = req.body.old;
-    var newJob = req.body.new;
-    var jobs =[];
-    server.models.JOBS.forEach(function(job) {
-      if(job == oldJob)
-        jobs.push(newJob);
-      else
-        jobs.push(job);
+    var Job = server.models.Job;
+
+    Job.update({'_id': req.params.id }, {$set: req.body}, function(err, instance) {
+      if (err) return res.send(err);
+      res.send(instance);
     });
-    server.models.JOBS = jobs;
-    res.send(server.models.new);
   };
 };
