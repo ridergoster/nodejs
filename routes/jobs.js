@@ -4,7 +4,7 @@ var bodyparser = require('body-parser');
 module.exports = function(server){
   router
   .post('/',
-  bodyparser.json(), 
+  bodyparser.json(),
   server.actions.jobs.create)
 
   .get('/', server.actions.jobs.list)
@@ -13,7 +13,7 @@ module.exports = function(server){
   bodyparser.json(),
   server.actions.jobs.update)
 
-  .delete('/', server.actions.jobs.remove)
+  .delete('/:name', server.actions.jobs.remove)
 
   return router;
 }
